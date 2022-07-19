@@ -1,0 +1,84 @@
+---
+title: "Pitch_Location_Analysis"
+output: html_document
+date: "2022-07-18"
+---
+
+# Aaron Judge and Giancarlo Stanton
+
+Statcast is a state-of-the-art tracking system that uses high-resolution cameras and radar equipment to measure the precise location and movement of baseballs and baseball players.
+we're going to wrangle, analyze, and visualize Statcast data to compare Mr. Judge and Mr Stanton
+
+Batted ball events-which is any batted ball that produces a result. This includes outs, hits, and errors. Lets find the counts of batted ball events for each player in 2017
+
+
+```{r, echo=FALSE,warning=FALSE}
+
+
+knitr::kables(
+  list(
+    # the first kable() 
+    knitr::kable(
+      readd(judge_counts),  valign = 't',caption="JUDGE COUNTS"
+    ),
+    # the second kable() 
+    knitr::kable(readd(stanton_counts), valign = 't',caption="STANTON COUNTS")
+  )
+)
+
+
+```
+
+
+# Analysing Home Runs
+## Launch Speed vs Launch Angle
+
+Two of the most groundbreaking Statcast metrics are launch angle and exit velocity:
+
+Launch angle: the vertical angle at which the ball leaves a player's bat
+Exit velocity: the speed of the baseball as it comes off the bat
+    
+Let's look at exit velocity vs. launch angle and let's focus on home runs only (2015-2017). The first two plots show data points. The second two show smoothed contours to represent density.
+
+
+```{r, echo=FALSE,warning=FALSE,figures-side,fig.show="hold",out.width="50%"}
+
+par(mfrow=c(2,2))
+
+readd(judge_scatter_plot)
+readd(stanton_scatter_plot)
+readd(judge_kd_plot)
+readd(stanton_kd_plot)
+
+
+```
+
+
+## Home Runs by Pitch Velocity
+
+Lets compare Stanton and Judge's home runs in terms of pitch velocity.
+
+
+
+
+```{r echo=FALSE,warning=FALSE}
+
+readd(bx_plot)
+
+```
+
+
+
+## Home Runs by Pitch Location
+
+Statcast tracks the zone the pitch is in when it crosses the plate.We can plot this using a 2D histogram.
+
+
+```{r, echo=FALSE,warning=FALSE,pitch-location,fig.show="hold",out.width="50%"}
+
+par(mfrow=c(1,2))
+readd(judge_home_runs)
+readd(stanton_home_runs)
+
+```
+
