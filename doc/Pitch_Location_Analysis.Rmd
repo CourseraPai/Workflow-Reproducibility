@@ -1,6 +1,8 @@
 ---
 title: "Pitch_Location_Analysis"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 date: "2022-07-18"
 ---
 
@@ -18,11 +20,11 @@ Batted ball events-which is any batted ball that produces a result. This include
 knitr::kables(
   list(
     # the first kable() 
-    knitr::kable(
-      readd(judge_counts),  valign = 't',caption="JUDGE COUNTS"
+    kableExtra::kable(
+      drake::readd(judge_counts),  valign = 't',caption="JUDGE COUNTS"
     ),
     # the second kable() 
-    knitr::kable(readd(stanton_counts), valign = 't',caption="STANTON COUNTS")
+    kableExtra::kable(drake::readd(stanton_counts), valign = 't',caption="STANTON COUNTS")
   )
 )
 
@@ -45,10 +47,10 @@ Let's look at exit velocity vs. launch angle and let's focus on home runs only (
 
 par(mfrow=c(2,2))
 
-readd(judge_scatter_plot)
-readd(stanton_scatter_plot)
-readd(judge_kd_plot)
-readd(stanton_kd_plot)
+drake::readd(judge_scatter_plot)
+drake::readd(stanton_scatter_plot)
+drake::readd(judge_kd_plot)
+drake::readd(stanton_kd_plot)
 
 
 ```
@@ -63,7 +65,7 @@ Lets compare Stanton and Judge's home runs in terms of pitch velocity.
 
 ```{r echo=FALSE,warning=FALSE}
 
-readd(bx_plot)
+drake::readd(bx_plot)
 
 ```
 
@@ -77,8 +79,8 @@ Statcast tracks the zone the pitch is in when it crosses the plate.We can plot t
 ```{r, echo=FALSE,warning=FALSE,pitch-location,fig.show="hold",out.width="50%"}
 
 par(mfrow=c(1,2))
-readd(judge_home_runs)
-readd(stanton_home_runs)
+drake::readd(judge_home_runs)
+drake::readd(stanton_home_runs)
 
 ```
 
